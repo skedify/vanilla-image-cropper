@@ -6,7 +6,7 @@ const runSequence = require('run-sequence');
 const sync = require('browser-sync').create();
 
 const rollup = require('gulp-rollup');
-const babel = require('rollup-plugin-babel');
+const buble = require('rollup-plugin-buble');
 const eslint = require('rollup-plugin-eslint');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
@@ -59,15 +59,7 @@ const config = {
                     }),
                     commonjs(),
                     eslint('.eslintrc'),
-                    babel({
-                        presets: ['es2015-rollup'],
-                        plugins : [
-                            'check-es2015-constants',
-                            'transform-minify-booleans',
-                            'transform-property-literals',
-                            'transform-member-expression-literals',
-                        ]
-                    }),
+                    buble(),
                     uglify()
                 ],
             })
