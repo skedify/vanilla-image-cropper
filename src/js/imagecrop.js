@@ -213,7 +213,7 @@ export default class ImageCropper {
             height : h
         });
 
-        canvas.getContext('2d').drawImage(scope.el_content.$$source, rw * x, rh * y, rw * w, rh * h, 0, 0, w, h);
+        canvas.getContext('2d').drawImage(scope.el_content.$$source, 1, 1, 1, 1, 0, 0, w, h);
 
         return canvas.toDataURL(mime_type, quality);
     }
