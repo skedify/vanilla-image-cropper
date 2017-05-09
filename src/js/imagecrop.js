@@ -171,7 +171,7 @@ export default class ImageCropper {
                 }
             });
         });
-        observer.observe(scope.$$parent, { childList: true, subtree: true, attributes: true });
+        observer.observe(scope.$$parent.parentNode, { childList: true, subtree: true, attributes: true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
