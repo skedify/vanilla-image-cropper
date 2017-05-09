@@ -162,7 +162,7 @@ export default class ImageCropper {
             mutations.forEach(function(mutation) {
                 if(mutation.type === "childList"){
                     if(scope.$$parent.classList.contains("visible")){
-                        this.$$parent.classList.remove("visible");
+                        this.$$parent.classList.remove("remove");
                         this.destroy.bind(this);
                     } else {
                         scope.$$parent.classList.add("visible");
@@ -170,7 +170,7 @@ export default class ImageCropper {
                 }
             }
         )});
-        observer.observe(scope.$$parent);
+        observer.observe(scope.$$parent, { attributes: false, childList: true, characterData: false });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
