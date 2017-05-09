@@ -163,14 +163,14 @@ export default class ImageCropper {
                 console.log(mutation.addedNodes);
                 console.log(mutation.removedNodes);
                 if(mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0){
-                    console.log("Not reset");
-                } else {
                     console.log("reset");
-                    this.scope.destroy.bind(this);
+                    scope.destroy.bind(this);
+                } else {
+                     console.log("Not reset");
                 }
             });
         });
-        observer.observe(scope.$$parent, { childList: true });
+        observer.observe(scope.$$parent, { childList: true, subtree: true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
