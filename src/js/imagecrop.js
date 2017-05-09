@@ -160,10 +160,17 @@ export default class ImageCropper {
         // Trying stuff out for IE
         var observer = new MutationObserver(function(mutations){
             mutations.forEach(function(mutation) {
-                console.log(mutation.type);
+                if(mutation.type === "childList"){
+                    if(scope.$$parent.classList.contains("visible")){
+                        this.$$parent.classList.remove("visible");
+                        this.destroy.bind(this);
+                    } else {
+                        scope.$$parent.classList.add("visible");
+                    }
+                }
             }
         )});
-        observer.observe(scope.$$parent, { attributes: false, childList: true, characterData: false });
+        observer.observe(scope.$$parent);
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
