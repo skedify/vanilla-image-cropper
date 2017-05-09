@@ -228,7 +228,7 @@ export default class ImageCropper {
         }
         if (y_clip === 0) {
             y_clip = 1;
-            y_clip_width = y_clip_width - y_clip;
+            y_clip_width = y_clip_width - (y_clip + 0.1);
         }
         console.log(x_clip, y_clip, x_clip_width, y_clip_width);
 
