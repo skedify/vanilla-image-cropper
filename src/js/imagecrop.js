@@ -160,17 +160,15 @@ export default class ImageCropper {
         // Trying stuff out for IE
         var observer = new MutationObserver(function(mutations){
             mutations.forEach(function(mutation) {
-                if(mutation.type === "childList"){
-                    if(scope.$$parent.classList.contains("visible")){
-                        this.$$parent.classList.remove("remove");
-                        this.destroy.bind(this);
-                    } else {
-                        scope.$$parent.classList.add("visible");
-                    }
+                if(mutation.removedNodes.length > 0){
+                    console.log("reset");
+                    this.scope.destroy.bind(this);
+                } else {
+                    console.log("Not reset");
                 }
-            }
-        )});
-        observer.observe(scope.$$parent, { attributes: false, childList: true, characterData: false });
+            });
+        });
+        observer.observe(scope.$$parent, { childList: true, subtree: true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
@@ -203,7 +201,7 @@ export default class ImageCropper {
             //  Clean parent
             scope.$$parent.classList.remove('imgc');
         }
-
+        console.log("Element gets destroyed");
         scope.options.destroy_cb();
         delete scopes[this.$$id];
     }
