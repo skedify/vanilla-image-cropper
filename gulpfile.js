@@ -72,9 +72,11 @@ const config = {
 
     function doSCSS (component) {
         return gulp.src(component.src)
-            .pipe(scssLint({
+            // https://www.npmjs.com/package/gulp-scss-lint#install
+            // This requires Ruby to work, see install instructions above
+            /*.pipe(scssLint({
                 config : '.scss-lint.yml'
-            }))
+            }))*/
             .pipe(sass({
                 outputStyle : 'compressed'
             }))

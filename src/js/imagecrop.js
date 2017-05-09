@@ -63,7 +63,7 @@ function __render () {
     const scope = scopes[this.$$id];
 
     if (scope.state !== STATES.LOADING) return;
-
+    
     const img = scope.el_content.$$source;
 
     //  Calculate width and height based on max-width and max-height
@@ -131,7 +131,7 @@ function __update (evt) {
     if (dim.y < 0) dim.y = 0;
     if (dim.x2 > dim.w) dim.x2 = dim.w;
     if (dim.y2 > dim.h) dim.y2 = dim.h;
-
+    
     //  Patch updates
     scope.el_overlay.update(dim, scope.options);
     scope.el_handles.update(dim, scope.options);
@@ -193,6 +193,7 @@ export default class ImageCropper {
     }
 
     crop (mime_type = 'image/jpeg', quality = 1) {
+        console.log("crop");
         const scope = scopes[this.$$id];
 
         mime_type = hasValue(['image/jpeg', 'image/png'], mime_type)
