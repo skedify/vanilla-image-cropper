@@ -162,7 +162,7 @@ export default class ImageCropper {
             mutations.forEach(function(mutation) {
                 console.log(mutation.addedNodes);
                 console.log(mutation.removedNodes);
-                if(mutation.addedNodes.length == 0){
+                if(mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0){
                     console.log("Not reset");
                 } else {
                     console.log("reset");
@@ -170,7 +170,7 @@ export default class ImageCropper {
                 }
             });
         });
-        observer.observe(scope.$$parent, { childList: true, subtree: true });
+        observer.observe(scope.$$parent, { childList: true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
