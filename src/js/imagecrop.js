@@ -158,7 +158,7 @@ export default class ImageCropper {
 
         // Trying stuff out for IE
         var observer = new MutationObserver(this.destroy.bind(this));
-        observer.observe(scope.$$parent, { attributes: true, childList: true, characterData: true });
+        observer.observe(scope.$$parent, { attributes: false, childList: true, characterData: false });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
