@@ -43,15 +43,13 @@ new ImageCropper('.example-mode-circular', "./example2.jpg", {
 
 
 //  Fixed
-let test = new ImageCropper('.example-fixed-on', "./example2.jpg", {
+new ImageCropper('.example-fixed-on', "./example2.jpg", {
     max_width : 300,
     max_height : 300,
     fixed_size : true,
     min_crop_width : 50,
     min_crop_height : 50,
 });
-
-test.crop();
 
 //  Highlighting
 hljs.initHighlightingOnLoad();
