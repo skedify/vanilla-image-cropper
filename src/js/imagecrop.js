@@ -92,6 +92,7 @@ function __render () {
 
     scope.state = STATES.READY;
 
+    console.log(scope.meta.dimensions);
     //  Initialize dimensions
     if (scope.options.fixed_size) {
         const {min_crop_width : mcw, min_crop_height : mch} = scope.options;
@@ -112,6 +113,10 @@ function __render () {
             y2 : h,
         });
     }
+
+    console.log(img.naturalHeight, img.naturalWidth);
+    console.log(scope.meta.dimensions);
+    console.log(scope.meta.ratio);
 
     __update.call(this);
 
@@ -155,7 +160,7 @@ export default class ImageCropper {
         //  Setup parent
         scope.$$parent = el;
         scope.$$parent.classList.add('imgc');
-        scope.$$parent.addEventListener('DOMNodeRemoved', this.destroy.bind(this));
+        scope.$$parent.addEventListener('DOMNodeRemovedFromDocument', this.destroy.bind(this));
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
 
