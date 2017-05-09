@@ -160,11 +160,13 @@ export default class ImageCropper {
         // Trying stuff out for IE
         var observer = new MutationObserver(function(mutations){
             mutations.forEach(function(mutation) {
-                if(mutation.removedNodes.length > 0){
+                console.log(mutation.addedNodes);
+                console.log(mutation.removedNodes);
+                if(mutation.addedNodes.length == 0){
+                    console.log("Not reset");
+                } else {
                     console.log("reset");
                     this.scope.destroy.bind(this);
-                } else {
-                    console.log("Not reset");
                 }
             });
         });
