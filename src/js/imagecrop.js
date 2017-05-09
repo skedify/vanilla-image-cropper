@@ -218,6 +218,7 @@ export default class ImageCropper {
         if (xClip == 0) {
             xClip = 1;
         }
+        console.log(rw * x, rh * y, rw * w, rh * h, w, h);
         canvas.getContext('2d').drawImage(scope.el_content.$$source, xClip, rh * y, rw * w, rh * h, 0, 0, w, h);
 
         return canvas.toDataURL(mime_type, quality);
