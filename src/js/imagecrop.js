@@ -199,6 +199,7 @@ export default class ImageCropper {
 
     crop (mime_type = 'image/jpeg', quality = 1) {
         console.log("crop");
+        __render.call(this);
         const scope = scopes[this.$$id];
 
         mime_type = hasValue(['image/jpeg', 'image/png'], mime_type)
