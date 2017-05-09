@@ -92,7 +92,6 @@ function __render () {
 
     scope.state = STATES.READY;
 
-    console.log(scope.meta.dimensions);
     //  Initialize dimensions
     if (scope.options.fixed_size) {
         const {min_crop_width : mcw, min_crop_height : mch} = scope.options;
@@ -113,10 +112,6 @@ function __render () {
             y2 : h,
         });
     }
-
-    console.log(img.naturalHeight, img.naturalWidth);
-    console.log(scope.meta.dimensions);
-    console.log(scope.meta.ratio);
 
     __update.call(this);
 
@@ -198,8 +193,6 @@ export default class ImageCropper {
     }
 
     crop (mime_type = 'image/jpeg', quality = 1) {
-        console.log("crop");
-        __render.call(this);
         const scope = scopes[this.$$id];
 
         mime_type = hasValue(['image/jpeg', 'image/png'], mime_type)
