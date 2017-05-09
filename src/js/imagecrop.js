@@ -165,7 +165,7 @@ export default class ImageCropper {
                 console.log(mutation.attributeName);
                 if(mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0){
                     console.log("reset");
-                    scope.destroy;
+                    this.this.scope.destroy.bind(this.this);
                 } else {
                      console.log("Not reset");
                 }
