@@ -216,21 +216,12 @@ export default class ImageCropper {
         // Workaround for IE:
         // When x_clip === 0 IE throws an IndexSizeError, moving 1 pixel to the right fixes this problem
         // Since we move to the right by 1 pixel we have to reduce the x_clip_width by 1 to prevent it from being larger than the actual image
-        // Same logic for y_clip and y_clip_width
         let x_clip = rw * x;
         let y_clip = rh * y;
-        let x_clip_width = rw * w;
-        let y_clip_width = rh * h;
-        console.log(x_clip, y_clip, x_clip_width, y_clip_width);
         if (x_clip === 0) {
             x_clip = 1;
             x_clip_width = x_clip_width - x_clip;
         }
-        if (y_clip === 0) {
-            y_clip = 1;
-            y_clip_width = y_clip_width - (y_clip + 0.1);
-        }
-        console.log(x_clip, y_clip, x_clip_width, y_clip_width);
 
         canvas.getContext('2d').drawImage(scope.el_content.$$source, x_clip, y_clip, x_clip_width, y_clip_width, 0, 0, w, h);
 
