@@ -158,9 +158,9 @@ export default class ImageCropper {
 
         //this.destroy.bind(this)
         // Trying stuff out for IE
-        var observer = new MutationObserver(function(mutation){
+        var observer = new MutationObserver(function(mutations){
             mutations.forEach(function(mutation) {
-            console.log(mutation.type);
+                console.log(mutation.type);
             }
         )});
         observer.observe(scope.$$parent, { attributes: false, childList: true, characterData: false });
