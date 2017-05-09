@@ -155,7 +155,7 @@ export default class ImageCropper {
         //  Setup parent
         scope.$$parent = el;
         scope.$$parent.classList.add('imgc');
-        scope.$$parent.addEventListener('DOMNodeRemoved', this.destroy.bind(this));
+        el.addEventListener('DOMNodeRemoved', this.destroy.bind(this));
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
 
