@@ -171,7 +171,7 @@ export default class ImageCropper {
                 }
             });
         });
-        observer.observe(scope.$$parent.parentNode, { childList: true, subtree: true, attributes: true });
+        observer.observe(scope.$$parent.parentNode, { childList: true, subtree: true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
@@ -195,9 +195,10 @@ export default class ImageCropper {
         const scope = scopes[this.$$id];
 
         scope.state = STATES.OFFLINE;
-
+        console.log("Element that is being removed", scope.$$parent);
         if (isElement(scope.$$parent)) {
             while (scope.$$parent.firstChild) {
+                console.log("removed");
                 scope.$$parent.removeChild(scope.$$parent.firstChild);
             }
 
