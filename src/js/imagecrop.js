@@ -158,14 +158,11 @@ export default class ImageCropper {
 
         //this.destroy.bind(this)
         // Trying stuff out for IE
-        var observer = new MutationObserver(function(mutations){
-            mutations.forEach(function(mutation) {
-                console.log(mutation.addedNodes);
-                console.log(mutation.removedNodes);
-                console.log(mutation.attributeName);
+        var observer = new MutationObserver((mutations) =>{
+            mutations.forEach((mutation) => {
                 if(mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0){
                     console.log("reset");
-                    this.this.scope.destroy.bind(this.this);
+                    this.scope.destroy();
                 } else {
                      console.log("Not reset");
                 }
@@ -198,7 +195,6 @@ export default class ImageCropper {
         console.log("Element that is being removed", scope.$$parent);
         if (isElement(scope.$$parent)) {
             while (scope.$$parent.firstChild) {
-                console.log("removed");
                 scope.$$parent.removeChild(scope.$$parent.firstChild);
             }
 
