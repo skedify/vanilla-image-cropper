@@ -63,7 +63,7 @@ function __render () {
     const scope = scopes[this.$$id];
 
     if (scope.state !== STATES.LOADING) return;
-
+    
     const img = scope.el_content.$$source;
 
     //  Calculate width and height based on max-width and max-height
@@ -131,7 +131,7 @@ function __update (evt) {
     if (dim.y < 0) dim.y = 0;
     if (dim.x2 > dim.w) dim.x2 = dim.w;
     if (dim.y2 > dim.h) dim.y2 = dim.h;
-
+    
     //  Patch updates
     scope.el_overlay.update(dim, scope.options);
     scope.el_handles.update(dim, scope.options);
@@ -155,7 +155,17 @@ export default class ImageCropper {
         //  Setup parent
         scope.$$parent = el;
         scope.$$parent.classList.add('imgc');
-        scope.$$parent.addEventListener('DOMNodeRemovedFromDocument', this.destroy.bind(this));
+
+        // MutationObserver replaces DOMNodeRemovedFromDocument event since this is deprecated and doesn't work in IE/Firefox
+        this.observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length === 0 && mutation.removedNodes.length > 0) {
+                    this.destroy();
+                }
+            });
+        });
+        this.observer.observe(scope.$$parent.parentNode, { childList : true, subtree : true });
+
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
 
@@ -177,8 +187,9 @@ export default class ImageCropper {
     destroy () {
         const scope = scopes[this.$$id];
 
-        scope.state = STATES.OFFLINE;
+        this.observer.disconnect();
 
+        scope.state = STATES.OFFLINE;
         if (isElement(scope.$$parent)) {
             while (scope.$$parent.firstChild) {
                 scope.$$parent.removeChild(scope.$$parent.firstChild);
@@ -187,7 +198,6 @@ export default class ImageCropper {
             //  Clean parent
             scope.$$parent.classList.remove('imgc');
         }
-
         scope.options.destroy_cb();
         delete scopes[this.$$id];
     }

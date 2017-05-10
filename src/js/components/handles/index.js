@@ -3,6 +3,7 @@ import {cell} from '../../utils/Dom';
 import {convertGlobalToLocal} from '../../utils/Event';
 import Handle from './Handle';
 import {hasValue, copyTo} from '../../utils/Object';
+import {createEvent} from '../../utils/CreateEvent';
 
 function move (pos, dim) {
     const w = ~~((dim.x2 - dim.x) * .5);
@@ -49,8 +50,8 @@ export default class Handles {
 
         function changeDimensions (evt) {
             move(convertGlobalToLocal(evt, scope.$$parent.getBoundingClientRect()), scope.meta.dimensions);
-
-            scope.$$parent.dispatchEvent(new CustomEvent('source:dimensions'));
+            const toggle_event = createEvent('source:dimensions');
+            scope.$$parent.dispatchEvent(toggle_event);
         }
 
         this.$$view.addEventListener('mousedown', onMouseDown);
