@@ -75,16 +75,16 @@ function __render () {
         h = ~~(max_w * h / w);
         w = max_w;
     }
-
+    
     if (h > max_h) {
         w = ~~(max_h * w / h);
         h = max_h;
     }
-
+    
     //  Set ratio to use in processing afterwards ( this is based on original image size )
     scope.meta.ratio = {
-        w : Math.round((img.naturalWidth / w) * 100) / 100,
-        h : Math.round((img.naturalHeight / h) * 100) / 100,
+        w : Math.floor((img.naturalWidth / w) * 100) / 100,
+        h : Math.floor((img.naturalHeight / h) * 100) / 100,
     };
 
     //  Set width/height
