@@ -158,17 +158,14 @@ export default class ImageCropper {
 
         //this.destroy.bind(this)
         // Trying stuff out for IE
-        var observer = new MutationObserver((mutations) =>{
+        this.observer = new MutationObserver((mutations) =>{
             mutations.forEach((mutation) => {
-                if(mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0){
-                    console.log("reset");
-                    this.scope.destroy();
-                } else {
-                     console.log("Not reset");
+                if (mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0) {
+                    this.destroy();
                 }
             });
         });
-        observer.observe(scope.$$parent.parentNode, { childList: true, subtree: true });
+        this.observer.observe(scope.$$parent.parentNode, { childList: true, subtree: true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
@@ -191,8 +188,9 @@ export default class ImageCropper {
     destroy () {
         const scope = scopes[this.$$id];
 
+        this.observer.disconnect();
+
         scope.state = STATES.OFFLINE;
-        console.log("Element that is being removed", scope.$$parent);
         if (isElement(scope.$$parent)) {
             while (scope.$$parent.firstChild) {
                 scope.$$parent.removeChild(scope.$$parent.firstChild);
@@ -201,13 +199,11 @@ export default class ImageCropper {
             //  Clean parent
             scope.$$parent.classList.remove('imgc');
         }
-        console.log("Element gets destroyed");
         scope.options.destroy_cb();
         delete scopes[this.$$id];
     }
 
     crop (mime_type = 'image/jpeg', quality = 1) {
-        console.log("crop");
         const scope = scopes[this.$$id];
 
         mime_type = hasValue(['image/jpeg', 'image/png'], mime_type)
