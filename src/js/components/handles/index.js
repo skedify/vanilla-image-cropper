@@ -50,8 +50,7 @@ export default class Handles {
 
         function changeDimensions (evt) {
             move(convertGlobalToLocal(evt, scope.$$parent.getBoundingClientRect()), scope.meta.dimensions);
-            const toggle_event = createEvent('source:dimensions');
-            scope.$$parent.dispatchEvent(toggle_event);
+            scope.$$parent.dispatchEvent(createEvent('source:dimensions'));
         }
 
         this.$$view.addEventListener('mousedown', onMouseDown);

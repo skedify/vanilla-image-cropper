@@ -119,8 +119,7 @@ import {createEvent} from '../../utils/CreateEvent';
                     scope.options
                 );
 
-                const toggle_event = createEvent('source:dimensions');
-                parent.dispatchEvent(toggle_event);
+                parent.dispatchEvent(createEvent('source:dimensions'));
             }
 
             //  Bootstrap element

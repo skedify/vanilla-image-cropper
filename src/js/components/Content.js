@@ -9,8 +9,7 @@ export default class Content {
 
         //  Load Image
         this.$$source.addEventListener('load', () => {
-            const toggle_event = createEvent('source:fetched');
-            this.$$source.dispatchEvent(toggle_event);
+            this.$$source.dispatchEvent(createEvent('source:fetched'));
         });
     }
 
