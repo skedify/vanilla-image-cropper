@@ -156,16 +156,15 @@ export default class ImageCropper {
         scope.$$parent = el;
         scope.$$parent.classList.add('imgc');
 
-        //this.destroy.bind(this)
-        // Trying stuff out for IE
-        this.observer = new MutationObserver((mutations) =>{
+        // MutationObserver replaces DOMNodeRemovedFromDocument event since this is deprecated and doesn't work in IE/Firefox
+        this.observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
-                if (mutation.addedNodes.length == 0 && mutation.removedNodes.length > 0) {
+                if (mutation.addedNodes.length === 0 && mutation.removedNodes.length > 0) {
                     this.destroy();
                 }
             });
         });
-        this.observer.observe(scope.$$parent.parentNode, { childList: true, subtree: true });
+        this.observer.observe(scope.$$parent.parentNode, { childList : true, subtree : true });
 
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
