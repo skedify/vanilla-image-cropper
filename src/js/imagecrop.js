@@ -74,16 +74,16 @@ function __render () {
         h = ~~(max_w * h / w);
         w = max_w;
     }
-
+    
     if (h > max_h) {
         w = ~~(max_h * w / h);
         h = max_h;
     }
-
+    
     //  Set ratio to use in processing afterwards ( this is based on original image size )
     scope.meta.ratio = {
-        w : Math.round((img.naturalWidth / w) * 100) / 100,
-        h : Math.round((img.naturalHeight / h) * 100) / 100,
+        w : Math.floor((img.naturalWidth / w) * 100) / 100,
+        h : Math.floor((img.naturalHeight / h) * 100) / 100,
     };
 
     //  Set width/height
@@ -213,17 +213,7 @@ export default class ImageCropper {
             height : h
         });
 
-        // Workaround for IE:
-        // When x_clip === 0 IE throws an IndexSizeError, moving 1 pixel to the right fixes this problem
-        // Since we move to the right by 1 pixel we have to reduce the x_clip_width by 1 to prevent it from being larger than the actual image
-        let x_clip = rw * x;
-        let y_clip = rh * y;
-        if (x_clip === 0) {
-            x_clip = 1;
-            x_clip_width = x_clip_width - x_clip;
-        }
-
-        canvas.getContext('2d').drawImage(scope.el_content.$$source, x_clip, y_clip, x_clip_width, y_clip_width, 0, 0, w, h);
+        canvas.getContext('2d').drawImage(scope.el_content.$$source, rw * x, rh * y, rw * w, rh * h, 0, 0, w, h);
 
         return canvas.toDataURL(mime_type, quality);
     }
