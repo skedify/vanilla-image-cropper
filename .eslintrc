@@ -12,7 +12,7 @@
   "globals": {
     "module" : true,
     "ImageCropper" : true,
-    "hljs" : true,
+    "hljs" : true
   },
   "rules": {
     "eqeqeq": 1,
