@@ -13,8 +13,8 @@ const commonjs = require('rollup-plugin-commonjs');
 const uglify = require('rollup-plugin-uglify');
 
 const rename = require('gulp-rename');
-const scssLint = require('gulp-scss-lint');
 const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
 const autoprefixer = require('gulp-autoprefixer');
 
 const config = {
@@ -38,7 +38,7 @@ const config = {
         src : ['src/sass/**/**.scss'],
         dest : 'dist/css/',
     },
-}
+};
 
 //
 //  UTILITIES
@@ -48,14 +48,14 @@ const config = {
         return gulp.src(component.src)
         .pipe(
             rollup({
-                entry: component.entry,
-                format: 'iife',
-                moduleName: 'ImageCropper',
-                plugins: [
+                entry : component.entry,
+                format : 'iife',
+                moduleName : 'ImageCropper',
+                plugins : [
                     resolve({
-                        jsnext: true,
-                        main: true,
-                        browser: true,
+                        jsnext : true,
+                        main : true,
+                        browser : true,
                     }),
                     commonjs(),
                     eslint('.eslintrc'),
@@ -72,9 +72,12 @@ const config = {
 
     function doSCSS (component) {
         return gulp.src(component.src)
-            .pipe(scssLint({
-                config : '.scss-lint.yml'
+            .pipe(sassLint({
+                options : {
+                    configFile : '.sass-lint.yml'
+                }
             }))
+            .pipe(sassLint.format())
             .pipe(sass({
                 outputStyle : 'compressed'
             }))

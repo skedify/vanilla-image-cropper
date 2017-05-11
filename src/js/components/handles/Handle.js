@@ -1,5 +1,6 @@
 import {cell} from '../../utils/Dom';
 import {convertGlobalToLocal} from '../../utils/Event';
+import CustomEvent from '../../utils/CustomEvent';
 
 //
 //  CALLBACKS FOR EACH TYPE OF HANDLE
