@@ -1,5 +1,4 @@
 import {cell} from '../utils/Dom';
-import {createEvent} from '../utils/CreateEvent';
 
 export default class Content {
     constructor (scope) {
@@ -9,7 +8,7 @@ export default class Content {
 
         //  Load Image
         this.$$source.addEventListener('load', () => {
-            this.$$source.dispatchEvent(createEvent('source:fetched'));
+            this.$$source.dispatchEvent(new CustomEvent('source:fetched'));
         });
     }
 

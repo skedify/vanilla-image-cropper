@@ -1,6 +1,5 @@
 import {cell} from '../../utils/Dom';
 import {convertGlobalToLocal} from '../../utils/Event';
-import {createEvent} from '../../utils/CreateEvent';
 
 //
 //  CALLBACKS FOR EACH TYPE OF HANDLE
@@ -119,7 +118,7 @@ import {createEvent} from '../../utils/CreateEvent';
                     scope.options
                 );
 
-                parent.dispatchEvent(createEvent('source:dimensions'));
+                parent.dispatchEvent(new CustomEvent('source:dimensions'));
             }
 
             //  Bootstrap element
