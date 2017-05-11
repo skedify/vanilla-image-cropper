@@ -3,6 +3,7 @@ import {cell} from '../../utils/Dom';
 import {convertGlobalToLocal} from '../../utils/Event';
 import Handle from './Handle';
 import {hasValue, copyTo} from '../../utils/Object';
+import CustomEvent from '../../utils/CustomEvent';
 
 function move (pos, dim) {
     const w = ~~((dim.x2 - dim.x) * .5);

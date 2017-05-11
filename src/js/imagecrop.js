@@ -5,7 +5,6 @@ import Overlay from './components/Overlay';
 import {hasValue, copyTo} from './utils/Object';
 import {cell, isElement} from './utils/Dom';
 import {MODES, STATES} from './constants';
-import {checkCustomEventConstructor} from './utils/CustomEvent';
 
 const scopes = {};
 
@@ -143,8 +142,6 @@ function __update (evt) {
 export default class ImageCropper {
     constructor (selector, href, opts = {}) {
         if (!href || !selector) return;
-
-        checkCustomEventConstructor();
 
         this.$$id = Math.random().toString(36).substring(2);
 
