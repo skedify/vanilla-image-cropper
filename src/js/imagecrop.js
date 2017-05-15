@@ -156,7 +156,17 @@ export default class ImageCropper {
         //  Setup parent
         scope.$$parent = el;
         addClass(scope.$$parent, 'imgc');
-        scope.$$parent.addEventListener('DOMNodeRemovedFromDocument', this.destroy.bind(this));
+
+        // MutationObserver replaces DOMNodeRemovedFromDocument event since this is deprecated and doesn't work in IE/Firefox
+        this.observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length === 0 && mutation.removedNodes.length > 0) {
+                    this.destroy();
+                }
+            });
+        });
+        this.observer.observe(scope.$$parent.parentNode, { childList : true, subtree : true });
+
         scope.$$parent.addEventListener('source:fetched', __render.bind(this), true);
         scope.$$parent.addEventListener('source:dimensions', __update.bind(this), true);
 
@@ -178,8 +188,10 @@ export default class ImageCropper {
     destroy () {
         const scope = scopes[this.$$id];
 
-        scope.state = STATES.OFFLINE;
+        // The observer needs to be disconnected so the mutations inside the observer are cleared.
+        this.observer.disconnect();
 
+        scope.state = STATES.OFFLINE;
         if (isElement(scope.$$parent)) {
             while (scope.$$parent.firstChild) {
                 scope.$$parent.removeChild(scope.$$parent.firstChild);
@@ -188,7 +200,6 @@ export default class ImageCropper {
             //  Clean parent
             removeClass(scope.$$parent, 'imgc');
         }
-
         scope.options.destroy_cb();
         delete scopes[this.$$id];
     }
