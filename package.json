@@ -1,20 +1,20 @@
 {
   "name": "vanilla-image-cropper",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "A lightweight javascript imagecropper",
   "main": "imagecrop.js",
   "author": {
     "name": "Peter Vermeulen",
     "email": "nmb.peterv@gmail.com",
-    "url": "https://github.com/peterver"
+    "url": "https://github.com/skedify"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/peterver/vanilla-image-cropper.git"
+    "url": "git://github.com/skedify/web-app-dependency-vanilla-image-cropper.git"
   },
   "bugs": {
-    "url": "https://github.com/peterver/vanilla-image-cropper/issues"
+    "url": "https://github.com/skedify/web-app-dependency-vanilla-image-cropper/issues"
   },
   "engines": {
     "node": "^5.6.0",
@@ -41,7 +41,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-rollup": "^2.11.0",
     "gulp-sass": "^3.1.0",
-    "gulp-scss-lint": "^0.4.0",
+    "gulp-sass-lint": "^1.3.2",
     "jasmine-core": "^2.6.1",
     "karma": "^1.7.0",
     "karma-jasmine": "^1.1.0",
