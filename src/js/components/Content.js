@@ -1,4 +1,5 @@
 import {cell} from '../utils/Dom';
+import CustomEvent from '../utils/CustomEvent';
 
 export default class Content {
     constructor (scope) {
