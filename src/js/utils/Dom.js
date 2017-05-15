@@ -1,3 +1,5 @@
+import addClass from './ClassList';
+
 export function cell (tag, class_name = false, attributes = {}, parent = null, is_svg = false) {
     //  Create element, use svg namespace if required
     const el = !is_svg
@@ -12,7 +14,7 @@ export function cell (tag, class_name = false, attributes = {}, parent = null, i
         (Array.isArray(class_name)
             ? class_name
             : [class_name]
-        ).forEach((cname) => el.classList.add(cname));
+        ).forEach((cname) => addClass(el, cname));
     }
 
     Object.keys(attributes || {}).forEach(
