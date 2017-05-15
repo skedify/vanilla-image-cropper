@@ -1,4 +1,4 @@
-import addClass from './ClassList';
+import { addClass } from './ClassList';
 
 export function cell (tag, class_name = false, attributes = {}, parent = null, is_svg = false) {
     //  Create element, use svg namespace if required
