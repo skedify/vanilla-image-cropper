@@ -1,5 +1,5 @@
 const arrIndexOf = Array.prototype.indexOf || function (item) {
-    for (var i = 0, length = this.length; i < length; i++) {
+    for (let i = 0, length = this.length; i < length; i++) {
         if (i in this && this[i] === item) {
             return i;
         }
