@@ -1,0 +1,12 @@
+# Set the default end_of_line handling in case people have no core.autocrlf set
+* text=auto eol=lf
+
+# Declare some file types which are definitely text.
+*.css text
+*.scss text
+*.js text
+*.json text
+*.md text
+*.yml text
+*.yaml text
+LICENSE text
