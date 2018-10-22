@@ -4,9 +4,9 @@
   "filenameRelative": "js/index.js",
   "sourceMaps": "inline",
   "presets": [
-    [
-      "env"
-    ]
+    ["env", {
+      "modules": false
+    }]
   ],
   "plugins": []
 }

@@ -1,4 +1,23 @@
-.DS_Store
-.sass-cache
+# dotfiles except allowed
+.*
+!.gitignore
+!.gitattributes
+!.editorconfig
+!.eslintrc.yml
+!.eslintignore
+!.prettierignore
+!.sass-lint.yml
+!.travis.yml
+!.babelrc
+
+# dependencies
 node_modules/
-coverage
+
+# build output
+coverage/
+
+# lock files
+yarn.lock
+
+# log files
+*.log
