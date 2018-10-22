@@ -1,8 +1,17 @@
 language: node_js
+cache:
+  directories:
+    - $HOME/.npm
+notifications:
+  email: false
 node_js:
-  - "6.6"
+  - "10"
+  - "9"
 before_script:
   - npm install -g gulp karma-cli
   - npm install
 script: 
   - npm test
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
