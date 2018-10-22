@@ -17,7 +17,7 @@
   ],
   "ignore": [
     "src/",
-    "tests/",
+    "test/",
     "gulpfile.js",
     "node_modules",
     "**/.*",

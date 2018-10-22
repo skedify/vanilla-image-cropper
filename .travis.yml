@@ -8,7 +8,6 @@ node_js:
   - "10"
   - "9"
 before_script:
-  - npm install -g gulp karma-cli
   - npm install
 script: 
   - npm test
