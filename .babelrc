@@ -1,12 +1,8 @@
 {
-  "sourceRoot": "src",
-  "sourceType": "module",
-  "filenameRelative": "js/index.js",
-  "sourceMaps": "inline",
+  "minified": true,
+  "ignore": "**/*.test.js,**/test.js",
   "presets": [
-    ["env", {
-      "modules": false
-    }]
+    "env"
   ],
   "plugins": []
 }

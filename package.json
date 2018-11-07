@@ -29,14 +29,16 @@
   "scripts": {
     "lint": "eslint --cache src/**/*.js",
     "format": "npm run lint -- --fix",
-    "prebuild": "npm run lint",
-    "build": "gulp dist",
+    "clean": "rimraf lib",
+    "prebuild": "npm run lint && npm run clean",
+    "build": "mkdir lib && babel src --out-file lib/imagecrop.min.js",
     "start": "gulp serve",
     "test": "cross-env NODE_ENV=test jest",
     "tdd": "npm run test -- --watch",
     "check-coverage": "cross-env CI=true NODE_ENV=test jest --coverage"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
@@ -56,6 +58,7 @@
     "gulp-sass-lint": "^1.4.0",
     "jest": "^23.6.0",
     "prettier": "^1.14.3",
+    "rimraf": "^2.6.2",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.4.1",
