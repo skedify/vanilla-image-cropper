@@ -27,11 +27,13 @@
     "docs/"
   ],
   "scripts": {
-    "lint": "eslint --cache src/**/*.js",
+    "lint": "eslint src/**/*.js",
     "format": "npm run lint -- --fix",
     "clean": "rimraf lib",
     "prebuild": "npm run lint && npm run clean",
-    "build": "mkdir lib && babel src --out-file lib/imagecrop.min.js",
+    "build:js": "babel src --out-file lib/imagecrop.js",
+    "build:css": "node-sass ./src/sass -o lib --output-style compressed",
+    "build": "mkdir lib && npm run build:js && npm run build:css",
     "start": "gulp serve",
     "test": "cross-env NODE_ENV=test jest",
     "tdd": "npm run test -- --watch",
@@ -57,6 +59,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sass-lint": "^1.4.0",
     "jest": "^23.6.0",
+    "node-sass": "^4.10.0",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
     "rollup": "^0.66.6",
