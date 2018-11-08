@@ -34,7 +34,8 @@
     "build:js": "babel src --out-file lib/imagecrop.js",
     "build:css": "node-sass ./src/sass -o lib --output-style compressed",
     "build": "mkdir lib && npm run build:js && npm run build:css",
-    "start": "gulp serve",
+    "docs": "rimraf lib-docs && mkdir lib-docs && browserify docs/app.js > lib-docs/imagecrop-docs.js && node-sass ./docs -o lib-docs",
+    "start": "browser-sync start --index docs/index.html --server --files docs lib",
     "test": "cross-env NODE_ENV=test jest",
     "tdd": "npm run test -- --watch",
     "check-coverage": "cross-env CI=true NODE_ENV=test jest --coverage"
@@ -45,6 +46,7 @@
     "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.18.8",
+    "browserify": "^16.2.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.7.0",
     "eslint-config-prettier": "^3.1.0",
