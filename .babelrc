@@ -1,0 +1,12 @@
+{
+  "sourceRoot": "src",
+  "sourceType": "module",
+  "filenameRelative": "js/index.js",
+  "sourceMaps": "inline",
+  "presets": [
+    [
+      "env"
+    ]
+  ],
+  "plugins": []
+}
